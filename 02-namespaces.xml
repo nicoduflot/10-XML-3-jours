@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- on appelle le vocabulaire book,  -->
+<book version="5.0" xml:lang="fr"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <!-- Titre DocBook du document -->
+    <!-- 
+    grace au vocabulaires et aux espace de noms, ce title de docbook, titre du document 
+    ne sera pas confondu avec dc.title, la métadonnée titre du document par le Dublin Core
+-->
+    <title>Pourquoi j'ai mangé mon père</title>
+
+    <!-- Métadonnées Dublin Core, préfixe des éléments : dc. -->
+    <metadata>
+        <dc:title>Pourquoi j'ai mangé mon père</dc:title>
+        <dc:creator>Roy Lewis</dc:creator>
+        <dc:date>1975-01-01</dc:date>
+        <dc:identifier>urn:isbn:2266084372</dc:identifier>
+    </metadata>
+
+    <!-- Import des chapitres avec XInclude préfixe des éléments : xi. -->
+    <xi:include href="./docbook/introduction.xml" parse="xml" />
+    <xi:include href="./docbook/chapter1.xml" parse="xml" />
+    <xi:include href="./docbook/chapter2.xml" parse="xml" />
+    <xi:include href="./docbook/chapter3.xml" parse="xml" />
+    <xi:include href="./docbook/chapter4.xml" parse="xml" />
+    <index />
+</book>

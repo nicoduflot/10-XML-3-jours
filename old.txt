@@ -1,0 +1,87 @@
+window.addEventListener('DOMContentLoaded', function(){
+    let allReaders = document.querySelectorAll('button[data-action="readxml"]');
+    let html = '';
+    allReaders.forEach(button => {
+        button.addEventListener('click', ()=>{
+            fetch(button.dataset.xmlsource)
+            .then(response=>response.text())
+            .then(xmlFlux=>{
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlFlux, 'application/xml');
+                xmlData = xmlDoc.getElementsByTagName(button.dataset.keyword);
+                html = '';
+                document.querySelector(`.${button.dataset.target}`).innerHTML = html;
+                html = html + `<pre>\n`;
+                for(let i = 0; i < xmlData.length; i++){
+                    xmlData[i].childNodes.forEach(niveau1=>{
+                        if(niveau1.nodeName !== '#text' && niveau1.nodeName !== '#comment' ){
+                            if(niveau1.children.length === 0){
+                                //console.log(`|-> ${niveau1.nodeName} : ${niveau1.innerHTML}`);
+                                html = html + `|-> ${niveau1.nodeName} : ${niveau1.innerHTML}\n`;
+                            }else{
+                                //console.log(`|-> ${niveau1.nodeName} : `);
+                                html = html + `|-> ${niveau1.nodeName} : \n`;
+                                niveau1.childNodes.forEach(niveau2=>{
+                                    if(niveau2.nodeName !== '#text' && niveau2.nodeName !== '#comment' ){
+                                        if(niveau2.children.length === 0){
+                                            //console.log(`|   |-> ${niveau2.nodeName} : ${niveau2.innerHTML}`);
+                                            html = html + `|   |-> ${niveau2.nodeName} : ${niveau2.innerHTML}\n`;
+                                        }else{
+                                            //console.log(`|   |-> ${niveau2.nodeName} : `);
+                                            html = html + `|   |-> ${niveau2.nodeName} : \n`;
+                                            niveau2.childNodes.forEach(niveau3=>{
+                                                if(niveau3.nodeName !== '#text'){
+                                                    if(niveau3.children.length === 0){
+                                                        //console.log(`|   |   |-> ${niveau3.nodeName} : ${niveau3.innerHTML}`);
+                                                        html = html + `|   |   |-> ${niveau3.nodeName} : ${niveau3.innerHTML}\n`;
+                                                    }else{
+                                                        //console.log(`|   |   |-> ${niveau3.nodeName}`);
+                                                        html = html + `|   |   |-> ${niveau3.nodeName}\n`;
+                                                        niveau3.childNodes.forEach(niveau4=>{
+                                                            if(niveau4.nodeName !== '#text'){
+                                                                //console.log(`|   |   |   |-> ${niveau4.nodeName} : ${niveau4.innerHTML}`);
+                                                                html = html + `|   |   |   |-> ${niveau4.nodeName} : ${niveau4.innerHTML}\n`;
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                            
+                        }
+                    });
+                }
+                html = html + '</pre>\n';
+                console.log(html);
+                document.querySelector(`.${button.dataset.target}`).innerHTML = html;
+                //document.querySelector(`.${element.dataset.target}`).innerHTML = xmlDoc.getElementsByTagName('contact');
+            })
+            .catch(e=>console.error(e));
+
+        });
+    });
+
+    let allReseters = document.querySelectorAll('button[data-action="resetxml"]');
+    allReseters.forEach(element => {
+        element.addEventListener('click', ()=>{
+            //console.log(element.dataset);
+            document.querySelector(`.${element.dataset.target}`).innerHTML = '';
+        });
+    });
+
+    let testButton = document.querySelector('button.test');
+    testButton.addEventListener('click', ()=>{
+        console.log(testButton.dataset);
+        fetch(testButton.dataset.source)
+        .then(response=>response.text())
+        .then((xmlFlux)=>{
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlFlux, 'application/xml');
+            xmlData = xmlDoc.getElementsByTagName(testButton.dataset.keyword);
+            document.querySelector('main.afftest').innerHTML = parseXML(xmlData[0]);
+        })
+    });
+});
