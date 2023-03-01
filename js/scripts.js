@@ -34,12 +34,6 @@ function cTN(texte){
 }
 
 function parseXML(xmlData, html = '', userOptions = null) {
-    /* 
-    /!\ ATTENTION /!\
-    Cette fonction ne marche pour l'instant pas si des dtd sont définies en interne ou en externe
-
-    la fonction est récursive et pourra lire tous les niveaux d'un XML 
-    */
     /* le XML sera affiché sous la forme d'une liste html */
     html = cEO('ul');
     /* 
@@ -63,8 +57,8 @@ function parseXML(xmlData, html = '', userOptions = null) {
             if (element.children.length !== 0) {
                 let li = cEO('li');
                 li.appendChild(cTN(`${element.nodeName} :`)); 
+                /* si l'élément possède des attributs, on les affiche */
                 if(element.attributes.length > 0){
-                    
                     let ulAttr = cEO('ul', options);
                     for(attr of element.attributes){
                         let liAttr = cEO('li');
@@ -79,6 +73,7 @@ function parseXML(xmlData, html = '', userOptions = null) {
                 /* si pas d'enfant, c'est un élément de liste */
                 let li = cEO('li');
                 li.appendChild(cTN(`${element.nodeName} : ${element.innerHTML}`));
+                /* si l'élément possède des attributs, on les affiche */
                 if(element.attributes.length > 0){
                     let ulAttr = cEO('ul', options);
                     for(attr of element.attributes){
