@@ -16,6 +16,9 @@
                 <xsd:enumeration value="impasse"/>
                 <xsd:enumeration value="avenue"/>
                 <xsd:enumeration value="rue"/>
+                <xsd:enumeration value="place"/>
+                <xsd:enumeration value="route"/>
+                <xsd:enumeration value="chemin"/>
               </xsd:restriction>
             </xsd:simpleType>
           </xsd:attribute>

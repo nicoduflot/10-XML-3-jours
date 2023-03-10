@@ -4,8 +4,8 @@
   <client>
     <!-- identité du client -->
     <identite>
-      <nom>NORRIS</nom>
-      <prenom>Chuck</prenom>
+      <nom>ADAMS</nom>
+      <prenom>Douglas</prenom>
     </identite>
 
     <!-- liste des comptes bancaires du client -->
@@ -14,7 +14,24 @@
         <montant>2500</montant>
       </livretA>
       <courant>
-        <montant>4000</montant>
+        <montant>4200</montant>
+      </courant>
+    </comptes>
+  </client>
+  <client>
+    <!-- identité du client -->
+    <identite>
+      <nom>BEBLEBROX</nom>
+      <prenom>Zaphod</prenom>
+    </identite>
+
+    <!-- liste des comptes bancaires du client -->
+    <comptes>
+      <livretA>
+        <montant>250000</montant>
+      </livretA>
+      <courant>
+        <montant>4200000</montant>
       </courant>
     </comptes>
   </client>
