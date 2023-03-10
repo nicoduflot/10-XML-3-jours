@@ -19,8 +19,10 @@ window.addEventListener('DOMContentLoaded', function(){
                 keyword est le nom de l'élément racine du xml qui contient les données a afficher
                 C'est nécessaire pour pouvoir parser correctement le XML
                 */
+                //console.log('xmlDoc', xmlDoc);
                 xmlData = xmlDoc.getElementsByTagName(button.dataset.keyword);
-               /* on vide l'élément receveur */
+                console.log('xmlData', xmlData);
+                /* on vide l'élément receveur */
                 //document.querySelector(`.${button.dataset.target}`).innerHTML = '';
                 let affichage = document.querySelector(`.${button.dataset.target}`);
                 let child = affichage.children[0];
