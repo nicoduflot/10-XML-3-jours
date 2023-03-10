@@ -14,9 +14,13 @@ window.addEventListener('DOMContentLoaded', function(){
                 const parser = new DOMParser();
                 /* parser le XML dans une constante */
                 const xmlDoc = parser.parseFromString(xmlFlux, 'application/xml');
-                /* aller récupérer la racine du XML */
+                /* 
+                aller récupérer la racine du XML 
+                keyword est le nom de l'élément racine du xml qui contient les données a afficher
+                C'est nécessaire pour pouvoir parser correctement le XML
+                */
                 xmlData = xmlDoc.getElementsByTagName(button.dataset.keyword);
-                /* on vide l'élément receveur */
+               /* on vide l'élément receveur */
                 //document.querySelector(`.${button.dataset.target}`).innerHTML = '';
                 let affichage = document.querySelector(`.${button.dataset.target}`);
                 let child = affichage.children[0];
