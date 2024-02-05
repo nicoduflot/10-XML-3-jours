@@ -53,7 +53,9 @@ function parseXML(xmlData, html = '', userOptions = null) {
             /* si le noeud a des enfants, il s'agit d'une sous-liste */
             if (element.children.length !== 0) {
                 let li = cEO('li');
-                li.appendChild(cTN(`${element.nodeName} :`)); 
+                let b = cEO('b', {style:''});
+                b.appendChild(cTN(`${element.nodeName} :`)); 
+                li.appendChild(b); 
                 /* si l'élément possède des attributs, on les affiche */
                 if(element.attributes.length > 0){
                     let ulAttr = cEO('ul', options);
@@ -69,7 +71,12 @@ function parseXML(xmlData, html = '', userOptions = null) {
             } else {
                 /* si pas d'enfant, c'est un élément de liste */
                 let li = cEO('li');
-                li.appendChild(cTN(`${element.nodeName} : ${element.innerHTML}`));
+                let b = cEO('b', {style:''});
+                b.appendChild(cTN(`${element.nodeName} : `));
+                li.appendChild(b);
+                li.appendChild(cTN(`${element.innerHTML}`));
+                //b.appendChild(cTN(`${element.nodeName} : ${element.innerHTML}`));
+                //li.appendChild(b);
                 /* si l'élément possède des attributs, on les affiche */
                 if(element.attributes.length > 0){
                     let ulAttr = cEO('ul', options);
@@ -85,7 +92,7 @@ function parseXML(xmlData, html = '', userOptions = null) {
             }
             if (element.children.length !== 0) {
                 /* si le noeud a des enfants, on rappelle la fonction */
-                html.appendChild(parseXML(element, html));
+                html.appendChild(parseXML(element, html, options));
             }
         }
     });

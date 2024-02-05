@@ -26,5 +26,4 @@
     <xi:include href="./docbook/chapter2.xml" parse="xml" />
     <xi:include href="./docbook/chapter3.xml" parse="xml" />
     <xi:include href="./docbook/chapter4.xml" parse="xml" />
-    <index />
 </book>

@@ -72,9 +72,9 @@
   <!-- balise telephones -->
   <xsd:element name="telephones">
     <xsd:complexType>
-      <xsd:sequence>
+      <xsd:choice>
         <xsd:element ref="telephone" maxOccurs="unbounded"/>
-      </xsd:sequence>
+      </xsd:choice>
     </xsd:complexType>
   </xsd:element>
     

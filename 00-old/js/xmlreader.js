@@ -26,7 +26,15 @@ window.addEventListener('DOMContentLoaded', function(){
                 let child = affichage.children[0];
                 affichage.removeChild(child);
                 /* parser le contenu de la racine et l'afficher dans un élément */
-                affichage.appendChild(parseXML(xmlData[0]));
+                let options = {
+                    style: `
+                        font-style:italic;
+                        font-weight:bold;
+                        list-style-type: none;
+                        font-size:smaller`, 
+                    class: 'alert p-0  ps-2 pe-2 mb-0'
+                };
+                affichage.appendChild(parseXML(xmlData[0], '', options));
             })
             .catch(e=>console.error(e));
         });

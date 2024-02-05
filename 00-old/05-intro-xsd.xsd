@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- Elément racine, dans le fichier l'élément racine est rollodex -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="rollodex">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="nom" type="xsd:string" default="DOE" />
+                <!-- string : chaîne de caractères -->
+                <xsd:element name="prenom" type="xsd:string" default="John" />
+                <xsd:element name="age" type="xsd:int" />
+                <!-- int nombre entier -->
+                <xsd:element name="status" type="xsd:string" fixed="Employé·e"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

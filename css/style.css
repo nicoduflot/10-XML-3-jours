@@ -1,0 +1,13 @@
+.attrList{
+    font-style: italic;
+    list-style-type: none;
+}
+
+body > main,
+body > nav,
+body > header, 
+body > footer{
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}

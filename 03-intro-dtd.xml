@@ -1,79 +1,92 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!DOCTYPE rollodex [
-    <!ELEMENT rollodex (contact+)>
-        <!ELEMENT contact (nom, prenom?, adresses, emails)>
-        <!ATTLIST contact personne (physique |morale ) "physique">
-        <!ATTLIST contact numero ID #REQUIRED>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE rolodex [
+    <!ELEMENT rolodex (contact)*>
+        <!ELEMENT contact (nom, prenom*, adresses, emails)>
+        <!ATTLIST contact type (morale | physique) "physique">
             <!ELEMENT nom (#PCDATA)>
-            <!ELEMENT prenom (#PCDATA)>
+            <!ELEMENT prenom (#PCDATA | surnom)*>
+                <!ELEMENT surnom (#PCDATA)>
             <!ELEMENT adresses (adresse*)>
-                <!ELEMENT adresse (numero, voie, codePostal, ville, pays)>
-                    <!ATTLIST adresse type (facturation|livraison) #REQUIRED>
-                    <!ATTLIST adresse userAdresse IDREF #REQUIRED>
-                    <!ELEMENT numero (#PCDATA)>
-                    <!ELEMENT voie (#PCDATA)>
-                    <!ATTLIST voie type (rue|avenue|boulevard|impasse|place|route|faubourg) #REQUIRED>
-                    <!ELEMENT codePostal (#PCDATA)>
-                    <!ELEMENT ville (#PCDATA)>
-                    <!ELEMENT pays (#PCDATA)>
-            <!ELEMENT emails (email*)>
+                <!ELEMENT adresse (numero, voie, codepostal, ville, pays)>
+                <!ATTLIST adresse type (facturation | livraison) #REQUIRED>
+                <!ELEMENT numero (#PCDATA)>
+                <!ELEMENT voie (#PCDATA)>
+                <!ATTLIST voie type ( rue | avenue | boulevard | impasse | place | faubourg | route | chemin | voie | quai | passage | square ) #REQUIRED>
+                <!ELEMENT codepostal (#PCDATA)>
+                <!ELEMENT ville (#PCDATA)>
+                <!ELEMENT pays (#PCDATA)>
+                <!ATTLIST pays codelang CDATA #REQUIRED>
+            <!ELEMENT emails (email+)>
                 <!ELEMENT email (#PCDATA)>
-                <!ATTLIST email type (personnel|professionnel) #REQUIRED>
+                <!ATTLIST email type (personnel|professionel) "personnel">
 ]>
-<rollodex>
-    <contact personne="physique" numero="n1">
-      <!-- Jean Durand, ACME Inc. CEO -->
-      <nom>Durand</nom>
-      <prenom>Jean</prenom>
-      <adresses>
-        <adresse type="facturation" userAdresse="n1">
-          <numero>7</numero>
-          <voie type="impasse">impasse du chemin</voie>
-          <codePostal>75015</codePostal>
-          <ville>PARIS</ville>
-          <pays>FRANCE</pays>
-        </adresse>
-        <adresse type="livraison" userAdresse="n1">
-          <numero>7</numero>
-          <voie type="impasse">impasse du chemin</voie>
-          <codePostal>75015</codePostal>
-          <ville>PARIS</ville>
-          <pays>FRANCE</pays>
-        </adresse>
-        <adresse type="livraison" userAdresse="n1">
-          <numero>14</numero>
-          <voie type="place">Place des États-Unis</voie>
-          <codePostal>75016</codePostal>
-          <ville>PARIS</ville>
-          <pays>FRANCE</pays>
-        </adresse>
-      </adresses>
-      <emails>
-        <email type="personnel">jean.duranc@yahoo.fr</email>
-        <email type="professionnel">jdurand@acme.com</email>
-      </emails>
+<rolodex>
+    <contact type="physique">
+        <nom>Durand</nom>
+        <!-- <!ELEMENT prenom (#PCDATA | surnom)*> -->
+        <prenom>Jean
+            <surnom>Dudu</surnom>
+        </prenom>
+        <adresses>
+            <adresse type="facturation">
+                <numero>7</numero>
+                <!-- 
+                rue | avenue | boulevard | impasse | place | faubourg | route | chemin | voie | quai
+                -->
+                <voie type="impasse">Inmpasse du chemin</voie>
+                <codepostal>75015</codepostal>
+                <ville>Paris</ville>
+                <pays codelang="fr-FR">FRANCE</pays>
+            </adresse>
+            <adresse type="livraison">
+                <numero>7</numero>
+                <voie type="impasse">Inmpasse du chemin</voie>
+                <codepostal>75015</codepostal>
+                <ville>Paris</ville>
+                <pays codelang="fr-FR">FRANCE</pays>
+            </adresse>
+            <adresse type="livraison">
+                <numero>1</numero>
+                <voie type="rue">Rue de la paix</voie>
+                <codepostal>75001</codepostal>
+                <ville>Paris</ville>
+                <pays codelang="fr-FR">FRANCE</pays>
+            </adresse>
+        </adresses>
+        <emails>
+            <email type="personnel">jean_durand@yahoo.fr</email>
+            <email type="professionel">jdurand@acme.com</email>
+        </emails>
     </contact>
-    <contact personne="morale" numero="n2">
-      <!-- ACME Incorporated main location -->
-      <nom>ACME Inc.</nom>
-      <adresses>
-        <adresse type="facturation" userAdresse="n2">
-          <numero>7</numero>
-          <voie type="impasse">impasse du chemin</voie>
-          <codePostal>75015</codePostal>
-          <ville>PARIS</ville>
-          <pays>FRANCE</pays>
-        </adresse>
-        <adresse type="livraison" userAdresse="n2">
-          <numero>7</numero>
-          <voie type="impasse">impasse du chemin</voie>
-          <codePostal>75015</codePostal>
-          <ville>PARIS</ville>
-          <pays>FRANCE</pays>
-        </adresse>
-      </adresses>
-      <emails>
-        <email type="professionnel">contact@acme.com</email>
-      </emails>
+    <contact type="morale">
+        <nom>Acme Inc.</nom>
+        <adresses>
+            <adresse type="facturation">
+                <numero>7</numero>
+                <voie type="impasse">Inmpasse du chemin</voie>
+                <codepostal>75015</codepostal>
+                <ville>Paris</ville>
+                <pays codelang="fr-FR">FRANCE</pays>
+            </adresse>
+            <adresse type="livraison">
+                <numero>7</numero>
+                <voie type="impasse">Inmpasse du chemin</voie>
+                <codepostal>75015</codepostal>
+                <ville>Paris</ville>
+                <pays codelang="fr-FR">FRANCE</pays>
+            </adresse>
+            <adresse type="livraison">
+                <numero>1</numero>
+                <voie type="rue">Rue de la paix</voie>
+                <codepostal>75001</codepostal>
+                <ville>Paris</ville>
+                <pays codelang="fr-FR">FRANCE</pays>
+            </adresse>
+        </adresses>
+        <emails>
+            <email type="professionel">contact@acme.com</email>
+            <email type="professionel">sav@acme.com</email>
+            <email type="professionel">evenement@acme.com</email>
+        </emails>
     </contact>
-  </rollodex>
+</rolodex>

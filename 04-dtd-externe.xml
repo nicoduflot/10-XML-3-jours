@@ -1,59 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE rollodex SYSTEM "04-rollodex.dtd">
-<rollodex>
-    <contact personne="physique" numero="n1">
-      <!-- Jean Durand, ACME Inc. CEO -->
-      <nom>Durand</nom>
-      <prenom>Jean</prenom>
-      <adresses>
-        <adresse type="facturation" userAdresse="n1">
-          <numero>7</numero>
-          <voie type="impasse">impasse du chemin</voie>
-          <codePostal>75015</codePostal>
-          <ville>PARIS</ville>
-          <pays>FRANCE</pays>
-        </adresse>
-        <adresse type="livraison" userAdresse="n1">
-          <numero>7</numero>
-          <voie type="impasse">impasse du chemin</voie>
-          <codePostal>75015</codePostal>
-          <ville>PARIS</ville>
-          <pays>FRANCE</pays>
-        </adresse>
-        <adresse type="livraison" userAdresse="n1">
-          <numero>14</numero>
-          <voie type="place">Place des États-Unis</voie>
-          <codePostal>75016</codePostal>
-          <ville>PARIS</ville>
-          <pays>FRANCE</pays>
-        </adresse>
-      </adresses>
-      <emails>
-        <email type="personnel">jean.duranc@yahoo.fr</email>
-        <email type="professionnel">jdurand@acme.com</email>
-      </emails>
-    </contact>
-    <contact personne="morale" numero="n2">
-      <!-- ACME Incorporated main location -->
-      <nom>ACME Inc.</nom>
-      <adresses>
-        <adresse type="facturation" userAdresse="n2">
-          <numero>7</numero>
-          <voie type="impasse">impasse du chemin</voie>
-          <codePostal>75015</codePostal>
-          <ville>PARIS</ville>
-          <pays>FRANCE</pays>
-        </adresse>
-        <adresse type="livraison" userAdresse="n2">
-          <numero>7</numero>
-          <voie type="impasse">impasse du chemin</voie>
-          <codePostal>75015</codePostal>
-          <ville>PARIS</ville>
-          <pays>FRANCE</pays>
-        </adresse>
-      </adresses>
-      <emails>
-        <email type="professionnel">contact@acme.com</email>
-      </emails>
-    </contact>
-  </rollodex>
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE parking [
+<!ENTITY dacia SYSTEM "./parking/dacia.xml">
+<!ENTITY renault SYSTEM "./parking/renault.xml">
+<!ENTITY citroen SYSTEM "./parking/citroen.xml">
+
+<!ELEMENT parking (voiture*)>
+    <!ELEMENT voiture (#PCDATA)>
+]>
+
+<parking>
+    <voiture>
+        %dacia;
+    </voiture>
+    <voiture>
+        %renault;
+    </voiture>
+    <voiture>
+        %citroen;
+    </voiture>
+</parking>
